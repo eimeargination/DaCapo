@@ -1,5 +1,6 @@
 package com.example.dacapo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -28,6 +29,11 @@ public class QuizEndActivity extends AppCompatActivity {
         else {
             t.setText("You scored " + score + " points!");
         }
+    }
+
+    public void goToMainMenu(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 }

@@ -16,9 +16,13 @@ public class Questions {
         Question l1q1 = new Question(0, "How many lines are there on a stave?", "3", "5", "7", "5", "Yes, there are 5 lines on the stave.", "There are 5 lines on the stave");
         Question l1q2 = new Question(1, "What note does a treble clef land on?", "A", "B", "G", "G", "Correct feedback", "Incorrect feedback");
         Question l1q3 = new Question(2, "What note does a bass clef land on?", "A", "F", "G", "F", "Correct feedback", "Incorrect feedback");
+        Question l1q4 = new Question(3, "Question (A)", "A", "B", "C", "A", "Correct feeedback", "Incorrect feedback");
+        Question l1q5 = new Question(4, "Question (B)", "A", "B", "C", "B", "Correct feeedback", "Incorrect feedback");
         level1.add(l1q1);
         level1.add(l1q2);
         level1.add(l1q3);
+        level1.add(l1q4);
+        level1.add(l1q5);
 
         Question l2q1 = new Question(0, "How many beats does a minum last?", "1", "2", "4", "2", "Correct feeedback", "Incorrect feedback");
         Question l2q2 = new Question(1, "How many beats does a crochet last?", "1", "2", "4", "1", "Correct feedback", "Incorrect feedback");

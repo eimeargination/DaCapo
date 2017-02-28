@@ -16,14 +16,6 @@ public class Question {
     private String feedbackPositive;
     private String feedbackNegative;
 
-    public Question() {
-        id = 0;
-        question = "";
-        A = "";
-        B = "";
-        C = "";
-        answer = "";
-    }
     public Question(int id, String question, String A, String B, String C, String answer, String feedbackPositive, String feedbackNegative){
         this.id = id;
         this.question = question;
@@ -37,9 +29,6 @@ public class Question {
 
     public int getId() {
         return id;
-    }
-    public void setId(int id) {
-        this.id = id;
     }
     public String getQuestion() {
         return question;

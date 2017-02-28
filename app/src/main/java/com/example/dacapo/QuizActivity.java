@@ -21,7 +21,9 @@ public class QuizActivity extends AppCompatActivity {
 
     //variables for the score and the current question id
     int score=0;
-    int qid=0;
+    int qid;
+    double doubleqid;
+    int progress;
 
     //variables for the actual content on the activity
     TextView questionText;
@@ -41,7 +43,6 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //set layout
         setContentView(R.layout.activity_quiz);
-        final CharSequence[] items = {"A", "B", "C"};
 
         correct = new AlertDialog.Builder(this);
         incorrect = new AlertDialog.Builder(this);
@@ -69,9 +70,12 @@ public class QuizActivity extends AppCompatActivity {
         questions = new Questions();
         //get the level from which button was pressed
         b = getIntent().getExtras();
-        level = b.getInt("level");
+        level = b.getInt("level") + 1;
         //get the question list for the level
         questionList = questions.getQuestions(level);
+        doubleqid = questionList.size()*Math.random();
+        qid = (int) doubleqid;
+        progress = 0;
         //checks that the question list isn't null (it shouldn't ever be)
         if(questionList != null) {
             //set the total number of questions and the current question
@@ -113,9 +117,8 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
         //set progress bar to the percentage through the questions
-        prg.setProgress(qid*100/totalQuestions);
+        prg.setProgress(progress);
         //increase the qid
-        qid++;
     }
 
     //check if answer A is correct
@@ -123,11 +126,16 @@ public class QuizActivity extends AppCompatActivity {
         if(currentQuestion.getAnswer().equals(A.getText())) {
             //increase score if it is
             score++;
+            progress += 40;
             correct.setMessage(currentQuestion.getFeedbackPositive());
             correctAlert = correct.create();
             correctAlert.show();
         }
         else {
+            progress -= 10;
+            if(progress < 0) {
+                progress = 0;
+            }
             incorrect.setMessage(currentQuestion.getFeedbackNegative());
             incorrectAlert = incorrect.create();
             incorrectAlert.show();
@@ -139,11 +147,16 @@ public class QuizActivity extends AppCompatActivity {
         if(currentQuestion.getAnswer().equals(B.getText())) {
             //increase score if it is
             score++;
+            progress += 40;
             correct.setMessage(currentQuestion.getFeedbackPositive());
             correctAlert = correct.create();
             correctAlert.show();
         }
         else {
+            progress -=10;
+            if(progress < 0) {
+                progress = 0;
+            }
             incorrect.setMessage(currentQuestion.getFeedbackNegative());
             incorrectAlert = incorrect.create();
             incorrectAlert.show();
@@ -155,11 +168,16 @@ public class QuizActivity extends AppCompatActivity {
         if(currentQuestion.getAnswer().equals(C.getText())) {
             //increase score if it is
             score++;
+            progress += 40;
             correct.setMessage(currentQuestion.getFeedbackPositive());
             correctAlert = correct.create();
             correctAlert.show();
         }
         else {
+            progress -= 10;
+            if(progress < 0) {
+                progress = 0;
+            }
             incorrect.setMessage(currentQuestion.getFeedbackNegative());
             incorrectAlert = incorrect.create();
             incorrectAlert.show();
@@ -168,26 +186,36 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void setQuestionsUnanswerable() {
-        View.OnClickListener unclickable = new View.OnClickListener() {
+        View.OnClickListener nextQuestion = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 nextQuestion();
             }
         };
-        A.setOnClickListener(unclickable);
-        B.setOnClickListener(unclickable);
-        C.setOnClickListener(unclickable);
+        A.setOnClickListener(nextQuestion);
+        B.setOnClickListener(nextQuestion);
+        C.setOnClickListener(nextQuestion);
     }
 
     public void nextQuestion(){
-        //check whether qid is still less than the total number of questions
-        if(qid < totalQuestions) {
-            //change currentQuestion to the next question
+        //check whether progress is less than 100
+        if(progress < 100) {
+            //remove current question from the question list
+            questionList.remove(qid);
+            //check to see if the question list is empty
+            if(questionList.isEmpty()) {
+                //if it is, add all the level's questions again
+                questionList.addAll(questions.getQuestions(level));
+            }
+            //set qid to random number between 0 and questionList size
+            doubleqid = questionList.size()*Math.random();
+            qid = (int) doubleqid;
+            //set current question
             currentQuestion = questionList.get(qid);
             //set question view
             setQuestionView();
         }
-        //if qid >= totalQuestions:
+        //if progress is greater than 100
         else {
             //create an intent for the QuizEndActivity
             Intent intent = new Intent(this, QuizEndActivity.class);

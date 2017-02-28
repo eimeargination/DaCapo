@@ -15,6 +15,7 @@ public class Question {
     private String answer;
     private String feedbackPositive;
     private String feedbackNegative;
+    private boolean correct;
 
     public Question(int id, String question, String A, String B, String C, String answer, String feedbackPositive, String feedbackNegative){
         this.id = id;
@@ -25,6 +26,7 @@ public class Question {
         this.answer = answer;
         this.feedbackPositive = feedbackPositive;
         this.feedbackNegative = feedbackNegative;
+        correct = false;
     }
 
     public int getId() {
@@ -50,5 +52,11 @@ public class Question {
     }
     public String getFeedbackNegative() {
         return feedbackNegative;
+    }
+    public boolean getCorrect() {
+        return correct;
+    }
+    public void setCorrect(boolean correct) {
+        this.correct = correct;
     }
 }

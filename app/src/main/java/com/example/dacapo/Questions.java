@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by eimea on 24/02/2017.
+ * Created by eimear on 24/02/2017.
  */
 
 public class Questions {
@@ -40,13 +40,13 @@ public class Questions {
     }
     public List<Question> getQuestions(int level) {
         if(level == 1) {
-            return level1;
+            return new ArrayList<>(level1);
         }
         if(level == 2) {
-            return level2;
+            return new ArrayList<>(level2);
         }
         if(level == 3) {
-            return level3;
+            return new ArrayList<>(level3);
         }
         return null;
     }

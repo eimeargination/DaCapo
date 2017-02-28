@@ -1,5 +1,6 @@
 package com.example.dacapo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.AlertDialog;
@@ -15,7 +16,7 @@ public class QuizActivity extends AppCompatActivity {
     //variables for the level, list of questions for that level, total number of questions, and current question
     int level;
     Questions questions;
-    List<Question> questionList;
+    List<Question> questionList, incorrectQuestionList;
     int totalQuestions;
     Question currentQuestion;
 
@@ -73,6 +74,7 @@ public class QuizActivity extends AppCompatActivity {
         level = b.getInt("level") + 1;
         //get the question list for the level
         questionList = questions.getQuestions(level);
+        incorrectQuestionList = new ArrayList<>();
         doubleqid = questionList.size()*Math.random();
         qid = (int) doubleqid;
         progress = 0;
@@ -116,9 +118,8 @@ public class QuizActivity extends AppCompatActivity {
                 checkAnswerC(v);
             }
         });
-        //set progress bar to the percentage through the questions
+        //set progress bar to the progress
         prg.setProgress(progress);
-        //increase the qid
     }
 
     //check if answer A is correct
@@ -126,7 +127,10 @@ public class QuizActivity extends AppCompatActivity {
         if(currentQuestion.getAnswer().equals(A.getText())) {
             //increase score if it is
             score++;
-            progress += 40;
+            progress += 10;
+            if(incorrectQuestionList.contains(currentQuestion)) {
+                incorrectQuestionList.remove(currentQuestion);
+            }
             correct.setMessage(currentQuestion.getFeedbackPositive());
             correctAlert = correct.create();
             correctAlert.show();
@@ -135,6 +139,9 @@ public class QuizActivity extends AppCompatActivity {
             progress -= 10;
             if(progress < 0) {
                 progress = 0;
+            }
+            if(!incorrectQuestionList.contains(currentQuestion)) {
+                incorrectQuestionList.add(currentQuestion);
             }
             incorrect.setMessage(currentQuestion.getFeedbackNegative());
             incorrectAlert = incorrect.create();
@@ -147,7 +154,10 @@ public class QuizActivity extends AppCompatActivity {
         if(currentQuestion.getAnswer().equals(B.getText())) {
             //increase score if it is
             score++;
-            progress += 40;
+            progress += 10;
+            if(incorrectQuestionList.contains(currentQuestion)) {
+                incorrectQuestionList.remove(currentQuestion);
+            }
             correct.setMessage(currentQuestion.getFeedbackPositive());
             correctAlert = correct.create();
             correctAlert.show();
@@ -156,6 +166,9 @@ public class QuizActivity extends AppCompatActivity {
             progress -=10;
             if(progress < 0) {
                 progress = 0;
+            }
+            if(!incorrectQuestionList.contains(currentQuestion)) {
+                incorrectQuestionList.add(currentQuestion);
             }
             incorrect.setMessage(currentQuestion.getFeedbackNegative());
             incorrectAlert = incorrect.create();
@@ -168,7 +181,10 @@ public class QuizActivity extends AppCompatActivity {
         if(currentQuestion.getAnswer().equals(C.getText())) {
             //increase score if it is
             score++;
-            progress += 40;
+            progress += 10;
+            if(incorrectQuestionList.contains(currentQuestion)) {
+                incorrectQuestionList.remove(currentQuestion);
+            }
             correct.setMessage(currentQuestion.getFeedbackPositive());
             correctAlert = correct.create();
             correctAlert.show();
@@ -177,6 +193,9 @@ public class QuizActivity extends AppCompatActivity {
             progress -= 10;
             if(progress < 0) {
                 progress = 0;
+            }
+            if(!incorrectQuestionList.contains(currentQuestion)) {
+                incorrectQuestionList.add(currentQuestion);
             }
             incorrect.setMessage(currentQuestion.getFeedbackNegative());
             incorrectAlert = incorrect.create();
@@ -205,13 +224,27 @@ public class QuizActivity extends AppCompatActivity {
             //check to see if the question list is empty
             if(questionList.isEmpty()) {
                 //if it is, add all the level's questions again
-                questionList.addAll(questions.getQuestions(level));
+                if (!incorrectQuestionList.isEmpty()) {
+                    questionList.addAll(incorrectQuestionList);
+                }
+                else {
+                    questionList.addAll(questions.getQuestions(level));
+                }
             }
+
             //set qid to random number between 0 and questionList size
             doubleqid = questionList.size()*Math.random();
             qid = (int) doubleqid;
+            while(questionList.get(qid).getCorrect()) {
+                questionList.remove(qid);
+                doubleqid = questionList.size()*Math.random();
+                qid = (int) doubleqid;
+            }
             //set current question
             currentQuestion = questionList.get(qid);
+            while(currentQuestion.getCorrect()) {
+
+            }
             //set question view
             setQuestionView();
         }

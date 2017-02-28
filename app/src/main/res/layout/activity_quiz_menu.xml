@@ -10,34 +10,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.dacapo.QuizMenuActivity">
 
-    <Button
-        android:text="Level 2"
+    <ExpandableListView
+        android:id="@+id/expandableListView"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button2"
-        android:onClick="goToQuiz2"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button"
-        android:layout_below="@+id/button" />
-
-    <Button
-        android:text="Level 1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:onClick="goToQuiz1"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="Level 3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button3"
-        android:onClick="goToQuiz3"
-        android:layout_below="@+id/button2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="0.5dp" />
 
 </RelativeLayout>

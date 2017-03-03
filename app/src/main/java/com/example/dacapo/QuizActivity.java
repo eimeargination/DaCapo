@@ -14,7 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 public class QuizActivity extends AppCompatActivity {
     //variables for the level, list of questions for that level, total number of questions, and current question
-    int level;
+    int grade, level;
     Questions questions;
     List<Question> questionList, incorrectQuestionList;
     int totalQuestions;
@@ -72,8 +72,9 @@ public class QuizActivity extends AppCompatActivity {
         //get the level from which button was pressed
         b = getIntent().getExtras();
         level = b.getInt("level") + 1;
+        grade = b.getInt("grade") + 1;
         //get the question list for the level
-        questionList = questions.getQuestions(level);
+        questionList = questions.getQuestions(grade, level);
         incorrectQuestionList = new ArrayList<>();
         doubleqid = questionList.size()*Math.random();
         qid = (int) doubleqid;
@@ -136,7 +137,7 @@ public class QuizActivity extends AppCompatActivity {
             correctAlert.show();
         }
         else {
-            progress -= 10;
+            progress -= 5;
             if(progress < 0) {
                 progress = 0;
             }
@@ -163,7 +164,7 @@ public class QuizActivity extends AppCompatActivity {
             correctAlert.show();
         }
         else {
-            progress -=10;
+            progress -=5;
             if(progress < 0) {
                 progress = 0;
             }
@@ -190,7 +191,7 @@ public class QuizActivity extends AppCompatActivity {
             correctAlert.show();
         }
         else {
-            progress -= 10;
+            progress -= 5;
             if(progress < 0) {
                 progress = 0;
             }
@@ -228,7 +229,7 @@ public class QuizActivity extends AppCompatActivity {
                     questionList.addAll(incorrectQuestionList);
                 }
                 else {
-                    questionList.addAll(questions.getQuestions(level));
+                    questionList.addAll(questions.getQuestions(grade, level));
                 }
             }
 

@@ -16,26 +16,20 @@ public class ExpandableListData {
         grade1.add("Quiz 1");
         grade1.add("Quiz 2");
         grade1.add("Quiz 3");
-        grade1.add("Quiz 4");
-        grade1.add("Quiz 5");
 
-        List<String> grade2 = new ArrayList<String>();
+       /* List<String> grade2 = new ArrayList<String>();
         grade2.add("Quiz 1");
         grade2.add("Quiz 2");
         grade2.add("Quiz 3");
-        grade2.add("Quiz 4");
-        grade2.add("Quiz 5");
 
         List<String> grade3 = new ArrayList<String>();
         grade3.add("Quiz 1");
         grade3.add("Quiz 2");
-        grade3.add("Quiz 3");
-        grade3.add("Quiz 4");
-        grade3.add("Quiz 5");
+        grade3.add("Quiz 3");*/
 
         expandableListData.put("GRADE 1", grade1);
-        expandableListData.put("GRADE 2", grade2);
-        expandableListData.put("GRADE 3", grade3);
+        /*expandableListData.put("GRADE 2", grade2);
+        expandableListData.put("GRADE 3", grade3);*/
         return expandableListData;
     }
 }

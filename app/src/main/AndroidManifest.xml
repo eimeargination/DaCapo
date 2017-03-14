@@ -23,7 +23,8 @@
             android:name=".QuizEndActivity"
             android:label="@string/title_activity_quiz_end"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".QuizMenuActivity"></activity>
+        <activity android:name=".QuizMenuActivity" />
+        <activity android:name=".InteractivePianoActivity"></activity>
     </application>
 
 </manifest>

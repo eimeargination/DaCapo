@@ -17,4 +17,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, QuizMenuActivity.class);
         startActivity(intent);
     }
+    public void goToInteractiveKeyboard(View view) {
+        Intent intent = new Intent(this, InteractivePianoActivity.class);
+        startActivity(intent);
+    }
 }

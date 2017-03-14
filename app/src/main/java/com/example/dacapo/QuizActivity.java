@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 public class QuizActivity extends AppCompatActivity {
@@ -23,6 +24,7 @@ public class QuizActivity extends AppCompatActivity {
     //variables for the score and the current question id
     int score=0;
     int qid;
+    int numberOfOptions;
     double doubleqid;
     int progress;
 
@@ -30,6 +32,7 @@ public class QuizActivity extends AppCompatActivity {
     TextView questionText;
     Button A, B, C;
     ProgressBar prg;
+    ImageView imageView;
 
     //variable for the bundle (for importing the level)
     Bundle b;
@@ -65,6 +68,7 @@ public class QuizActivity extends AppCompatActivity {
         A = (Button) findViewById(R.id.button1);
         B = (Button) findViewById(R.id.button2);
         C = (Button) findViewById(R.id.button3);
+        imageView = (ImageView) findViewById(R.id.imageView2);
 
         prg = (ProgressBar) findViewById(R.id.progressBar);
         //create the questions
@@ -97,28 +101,57 @@ public class QuizActivity extends AppCompatActivity {
     //set question view method
     private void setQuestionView() {
         //set each item on the activity to the current question data
-        questionText.setText(currentQuestion.getQuestion());
-        A.setText(currentQuestion.getA());
-        B.setText(currentQuestion.getB());
-        C.setText(currentQuestion.getC());
-        A.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkAnswerA(v);
+        numberOfOptions = questionList.get(qid).getNumberOfOptions();
+        if(numberOfOptions == 3) {
+            questionText.setText(currentQuestion.getQuestion());
+            if(questionList.get(qid).getImageSource() != 0) {
+                imageView.setImageResource(questionList.get(qid).getImageSource());
             }
-        });
-        B.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkAnswerB(v);
-            }
-        });
-        C.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkAnswerC(v);
-            }
-        });
+            A.setText(currentQuestion.getA());
+            B.setText(currentQuestion.getB());
+            C.setText(currentQuestion.getC());
+            C.setVisibility(View.VISIBLE);
+            A.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    checkAnswerA(v);
+                }
+            });
+            B.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    checkAnswerB(v);
+                }
+            });
+            C.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    checkAnswerC(v);
+                }
+            });
+        }
+        else if(numberOfOptions == 2) {
+            questionText.setText(currentQuestion.getQuestion());
+            A.setText(currentQuestion.getA());
+            B.setText(currentQuestion.getB());
+            A.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    checkAnswerA(v);
+                }
+            });
+            B.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    checkAnswerB(v);
+                }
+            });
+            C.setVisibility(View.GONE);
+        }
+        else {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
         //set progress bar to the progress
         prg.setProgress(progress);
     }
@@ -126,85 +159,58 @@ public class QuizActivity extends AppCompatActivity {
     //check if answer A is correct
     public void checkAnswerA(View view){
         if(currentQuestion.getAnswer().equals(A.getText())) {
-            //increase score if it is
-            score++;
-            progress += 10;
-            if(incorrectQuestionList.contains(currentQuestion)) {
-                incorrectQuestionList.remove(currentQuestion);
-            }
-            correct.setMessage(currentQuestion.getFeedbackPositive());
-            correctAlert = correct.create();
-            correctAlert.show();
+            correctAnswer();
         }
         else {
-            progress -= 5;
-            if(progress < 0) {
-                progress = 0;
-            }
-            if(!incorrectQuestionList.contains(currentQuestion)) {
-                incorrectQuestionList.add(currentQuestion);
-            }
-            incorrect.setMessage(currentQuestion.getFeedbackNegative());
-            incorrectAlert = incorrect.create();
-            incorrectAlert.show();
+            incorrectAnswer();
         }
         setQuestionsUnanswerable();
     }
     //check if answer B is correct
     public void checkAnswerB(View view){
         if(currentQuestion.getAnswer().equals(B.getText())) {
-            //increase score if it is
-            score++;
-            progress += 10;
-            if(incorrectQuestionList.contains(currentQuestion)) {
-                incorrectQuestionList.remove(currentQuestion);
-            }
-            correct.setMessage(currentQuestion.getFeedbackPositive());
-            correctAlert = correct.create();
-            correctAlert.show();
+            correctAnswer();
         }
         else {
-            progress -=5;
-            if(progress < 0) {
-                progress = 0;
-            }
-            if(!incorrectQuestionList.contains(currentQuestion)) {
-                incorrectQuestionList.add(currentQuestion);
-            }
-            incorrect.setMessage(currentQuestion.getFeedbackNegative());
-            incorrectAlert = incorrect.create();
-            incorrectAlert.show();
+            incorrectAnswer();
         }
         setQuestionsUnanswerable();
     }
     //check if answer C is correct
     public void checkAnswerC(View view){
         if(currentQuestion.getAnswer().equals(C.getText())) {
-            //increase score if it is
-            score++;
-            progress += 10;
-            if(incorrectQuestionList.contains(currentQuestion)) {
-                incorrectQuestionList.remove(currentQuestion);
-            }
-            correct.setMessage(currentQuestion.getFeedbackPositive());
-            correctAlert = correct.create();
-            correctAlert.show();
+            correctAnswer();
         }
         else {
-            progress -= 5;
-            if(progress < 0) {
-                progress = 0;
-            }
-            if(!incorrectQuestionList.contains(currentQuestion)) {
-                incorrectQuestionList.add(currentQuestion);
-            }
-            incorrect.setMessage(currentQuestion.getFeedbackNegative());
-            incorrectAlert = incorrect.create();
-            incorrectAlert.show();
+            incorrectAnswer();
         }
         setQuestionsUnanswerable();
     }
 
+    private void correctAnswer() {
+        score++;
+        progress += 10;
+        if(incorrectQuestionList.contains(currentQuestion)) {
+            incorrectQuestionList.remove(currentQuestion);
+        }
+        correct.setMessage(currentQuestion.getFeedbackPositive());
+        correctAlert = correct.create();
+        correctAlert.show();
+    }
+
+    private void incorrectAnswer() {
+        progress -= 5;
+        if(progress < 0) {
+            progress = 0;
+        }
+        if(!incorrectQuestionList.contains(currentQuestion)) {
+            incorrectQuestionList.add(currentQuestion);
+        }
+        incorrect.setMessage(currentQuestion.getFeedbackNegative());
+        incorrectAlert = incorrect.create();
+        incorrectAlert.show();
+    }
+    
     private void setQuestionsUnanswerable() {
         View.OnClickListener nextQuestion = new View.OnClickListener() {
             @Override

@@ -14,7 +14,7 @@ public class Questions {
     private List<Question> grade1level3 = new ArrayList<>();
     public Questions() {
         //level 1 questions
-        grade1level1.add(new Question(0, "How many lines are there on a stave?", "3", "5", "7", "5",
+        grade1level1.add(new Question(0, "How many lines are there on a stave?", R.drawable.stave, "3", "5", "7", "5",
                                 "Yes, there are 5 lines on the stave.", "There are 5 lines on the stave"));
         grade1level1.add(new Question(1, "What note does a treble clef start on?", "A", "B", "G", "G",
                                 "The treble clef starts on a G", "The treble clef starts on a G"));
@@ -39,9 +39,9 @@ public class Questions {
                                 "Key signature", "Correct", "The sharps and flats are called the key signature"));
 
         //level 3 questions
-        grade1level3.add(new Question(0, "Question (A)", "A", "B", "C", "A",
+        grade1level3.add(new Question(0, "Question (A)", "A", "B", "A",
                                 "Correct feeedback", "Incorrect feedback"));
-        grade1level3.add(new Question(1, "Question (B)", "A", "B", "C", "B",
+        grade1level3.add(new Question(1, "Question (B)", "A", "B", "B",
                                 "Correct feedback", "Incorrect feedback"));
         grade1level3.add(new Question(2, "Question (C)", "A", "B", "C", "C",
                                 "Correct feedback", "Incorrect feedback"));

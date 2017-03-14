@@ -9,6 +9,8 @@ public class Question {
 
     private int id;
     private String question;
+    private int imageSource;
+    private int numberOfOptions;
     private String A;
     private String B;
     private String C;
@@ -17,9 +19,50 @@ public class Question {
     private String feedbackNegative;
     private boolean correct;
 
+    public Question(int id, String question, int imageSource, String A, String B, String answer, String feedbackPositive, String feedbackNegative){
+        this.id = id;
+        this.question = question;
+        this.imageSource = imageSource;
+        numberOfOptions = 2;
+        this.A = A;
+        this.B = B;
+        this.C = null;
+        this.answer = answer;
+        this.feedbackPositive = feedbackPositive;
+        this.feedbackNegative = feedbackNegative;
+        correct = false;
+    }
+    public Question(int id, String question, int imageSource, String A, String B, String C, String answer, String feedbackPositive, String feedbackNegative){
+        this.id = id;
+        this.question = question;
+        this.imageSource = imageSource;
+        numberOfOptions = 3;
+        this.A = A;
+        this.B = B;
+        this.C = C;
+        this.answer = answer;
+        this.feedbackPositive = feedbackPositive;
+        this.feedbackNegative = feedbackNegative;
+        correct = false;
+    }
+    public Question(int id, String question, String A, String B, String answer, String feedbackPositive, String feedbackNegative){
+        this.id = id;
+        this.question = question;
+        imageSource = 0;
+        numberOfOptions = 2;
+        this.A = A;
+        this.B = B;
+        this.C = null;
+        this.answer = answer;
+        this.feedbackPositive = feedbackPositive;
+        this.feedbackNegative = feedbackNegative;
+        correct = false;
+    }
     public Question(int id, String question, String A, String B, String C, String answer, String feedbackPositive, String feedbackNegative){
         this.id = id;
         this.question = question;
+        imageSource = 0;
+        numberOfOptions = 3;
         this.A = A;
         this.B = B;
         this.C = C;
@@ -34,6 +77,12 @@ public class Question {
     }
     public String getQuestion() {
         return question;
+    }
+    public int getImageSource() {
+        return imageSource;
+    }
+    public int getNumberOfOptions() {
+        return numberOfOptions;
     }
     public String getA() {
         return A;

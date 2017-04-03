@@ -30,13 +30,14 @@ public class QuizActivity extends AppCompatActivity {
 
     //variables for the actual content on the activity
     TextView questionText;
-    Button A, B, C;
+    Button A, B, C, D;
     ProgressBar prg;
     ImageView imageView;
 
     //variable for the bundle (for importing the level)
     Bundle b;
 
+    //variables for the alert dialogs
     AlertDialog.Builder correct, incorrect;
     AlertDialog correctAlert, incorrectAlert;
 
@@ -45,9 +46,10 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //set layout
-        setContentView(R.layout.activity_quiz);
+        //set layout to 4 question view
+        setContentView(R.layout.activity_quiz_4_questions);
 
+        //build the 2 alert dialogs - one for correct and one for incorrect
         correct = new AlertDialog.Builder(this);
         incorrect = new AlertDialog.Builder(this);
         correct.setTitle("Correct!");
@@ -65,24 +67,28 @@ public class QuizActivity extends AppCompatActivity {
 
         //assign all the Buttons, TextView etc to variables
         questionText = (TextView) findViewById(R.id.textView1);
-        A = (Button) findViewById(R.id.button1);
+        A = (Button) findViewById(R.id.button);
         B = (Button) findViewById(R.id.button2);
         C = (Button) findViewById(R.id.button3);
+        D = (Button) findViewById(R.id.button4);
         imageView = (ImageView) findViewById(R.id.imageView2);
-
         prg = (ProgressBar) findViewById(R.id.progressBar);
+
         //create the questions
         questions = new Questions();
+
         //get the level from which button was pressed
         b = getIntent().getExtras();
         level = b.getInt("level") + 1;
         grade = b.getInt("grade") + 1;
+
         //get the question list for the level
         questionList = questions.getQuestions(grade, level);
         incorrectQuestionList = new ArrayList<>();
         doubleqid = questionList.size()*Math.random();
         qid = (int) doubleqid;
         progress = 0;
+
         //checks that the question list isn't null (it shouldn't ever be)
         if(questionList != null) {
             //set the total number of questions and the current question
@@ -93,7 +99,7 @@ public class QuizActivity extends AppCompatActivity {
         }
         else {
             //if questionList is null (which it shouldn't be), return to main menu
-            Intent intent = new Intent(this, QuizEndActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
     }
@@ -101,8 +107,8 @@ public class QuizActivity extends AppCompatActivity {
     //set question view method
     private void setQuestionView() {
         //set each item on the activity to the current question data
-        numberOfOptions = questionList.get(qid).getNumberOfOptions();
-        if(numberOfOptions == 3) {
+        numberOfOptions = currentQuestion.getNumberOfOptions();
+        if(numberOfOptions == 4) {
             questionText.setText(currentQuestion.getQuestion());
             if(questionList.get(qid).getImageSource() != 0) {
                 imageView.setImageResource(questionList.get(qid).getImageSource());
@@ -110,7 +116,7 @@ public class QuizActivity extends AppCompatActivity {
             A.setText(currentQuestion.getA());
             B.setText(currentQuestion.getB());
             C.setText(currentQuestion.getC());
-            C.setVisibility(View.VISIBLE);
+            D.setText(currentQuestion.getD());
             A.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -129,9 +135,20 @@ public class QuizActivity extends AppCompatActivity {
                     checkAnswerC(v);
                 }
             });
+            D.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    checkAnswerD(v);
+                }
+            });
+            C.setVisibility(View.VISIBLE);
+            D.setVisibility(View.VISIBLE);
         }
         else if(numberOfOptions == 2) {
             questionText.setText(currentQuestion.getQuestion());
+            if(questionList.get(qid).getImageSource() != 0) {
+                imageView.setImageResource(questionList.get(qid).getImageSource());
+            }
             A.setText(currentQuestion.getA());
             B.setText(currentQuestion.getB());
             A.setOnClickListener(new View.OnClickListener() {
@@ -147,9 +164,10 @@ public class QuizActivity extends AppCompatActivity {
                 }
             });
             C.setVisibility(View.GONE);
+            D.setVisibility(View.GONE);
         }
         else {
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, QuizMenuActivity.class);
             startActivity(intent);
         }
         //set progress bar to the progress
@@ -179,6 +197,16 @@ public class QuizActivity extends AppCompatActivity {
     //check if answer C is correct
     public void checkAnswerC(View view){
         if(currentQuestion.getAnswer().equals(C.getText())) {
+            correctAnswer();
+        }
+        else {
+            incorrectAnswer();
+        }
+        setQuestionsUnanswerable();
+    }
+    //check if answer D is correct
+    public void checkAnswerD(View view){
+        if(currentQuestion.getAnswer().equals(D.getText())) {
             correctAnswer();
         }
         else {

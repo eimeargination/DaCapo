@@ -14,18 +14,18 @@ public class Questions {
     private List<Question> grade1level3 = new ArrayList<>();
     public Questions() {
         //level 1 questions
-        grade1level1.add(new Question(0, "How many lines are there on a stave?", R.drawable.stave, "3", "5", "7", "5",
+        grade1level1.add(new Question(0, "How many lines are there on a stave?", R.drawable.stave, "3", "5", "5",
                                 "Yes, there are 5 lines on the stave.", "There are 5 lines on the stave"));
-        grade1level1.add(new Question(1, "What note does a treble clef start on?", "A", "B", "G", "G",
+        grade1level1.add(new Question(1, "What note does a treble clef start on?", "A", "G", "G",
                                 "The treble clef starts on a G", "The treble clef starts on a G"));
-        grade1level1.add(new Question(2, "What note does a bass clef start on?", "A", "F", "G", "F",
+        grade1level1.add(new Question(2, "What note does a bass clef start on?", "A", "F", "G", "B", "F",
                                 "Correct! The bass clef starts on an F", "The bass clef starts on an F"));
-        grade1level1.add(new Question(3, "What do dynamics tell you?", "How loud or soft to play", "What to play", "Not to play", "How loud or soft to play",
+        grade1level1.add(new Question(3, "What do dynamics tell you?", "How loud or soft to play", "What to play", "How loud or soft to play",
                                 "Yes, dynamics tell you how loud or soft to play", "The dynamics don't tell you what or what not to play, " +
                                 "they tell you how loud or soft to play"));
-        grade1level1.add(new Question(4, "What musical term means go back to the start?", "Da capo", "Crotchet", "Repeat", "Da capo",
+        grade1level1.add(new Question(4, "What musical term means go back to the start?", "Da capo", "Crotchet", "Repeat", "F#", "Da capo",
                                 "Da capo is italian for \"from the beginning\"", "Da capo means go back to the start"));
-        grade1level1.add(new Question(5, "What is the key signature for the key of F?", "Bb, Eb", "Bb", "Bb, Eb, Ab", "Bb",
+        grade1level1.add(new Question(5, "What is the key signature for the key of F?", "Bb, Eb", "Bb", "Bb, Eb, Ab", "F#, C#", "Bb",
                                 "Yes", "Only Bb is present in the key of F"));
 
         //level 2 questions

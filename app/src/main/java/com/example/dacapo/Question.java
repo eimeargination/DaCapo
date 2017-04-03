@@ -14,6 +14,7 @@ public class Question {
     private String A;
     private String B;
     private String C;
+    private String D;
     private String answer;
     private String feedbackPositive;
     private String feedbackNegative;
@@ -27,6 +28,7 @@ public class Question {
         this.A = A;
         this.B = B;
         this.C = null;
+        this.D = null;
         this.answer = answer;
         this.feedbackPositive = feedbackPositive;
         this.feedbackNegative = feedbackNegative;
@@ -40,6 +42,21 @@ public class Question {
         this.A = A;
         this.B = B;
         this.C = C;
+        this.D = null;
+        this.answer = answer;
+        this.feedbackPositive = feedbackPositive;
+        this.feedbackNegative = feedbackNegative;
+        correct = false;
+    }
+    public Question(int id, String question, int imageSource, String A, String B, String C, String D, String answer, String feedbackPositive, String feedbackNegative){
+        this.id = id;
+        this.question = question;
+        this.imageSource = imageSource;
+        numberOfOptions = 4;
+        this.A = A;
+        this.B = B;
+        this.C = C;
+        this.D = D;
         this.answer = answer;
         this.feedbackPositive = feedbackPositive;
         this.feedbackNegative = feedbackNegative;
@@ -53,6 +70,7 @@ public class Question {
         this.A = A;
         this.B = B;
         this.C = null;
+        this.D = null;
         this.answer = answer;
         this.feedbackPositive = feedbackPositive;
         this.feedbackNegative = feedbackNegative;
@@ -66,6 +84,21 @@ public class Question {
         this.A = A;
         this.B = B;
         this.C = C;
+        this.D = null;
+        this.answer = answer;
+        this.feedbackPositive = feedbackPositive;
+        this.feedbackNegative = feedbackNegative;
+        correct = false;
+    }
+    public Question(int id, String question, String A, String B, String C, String D, String answer, String feedbackPositive, String feedbackNegative) {
+        this.id = id;
+        this.question = question;
+        imageSource = 0;
+        numberOfOptions = 4;
+        this.A = A;
+        this.B = B;
+        this.C = C;
+        this.D = D;
         this.answer = answer;
         this.feedbackPositive = feedbackPositive;
         this.feedbackNegative = feedbackNegative;
@@ -93,6 +126,9 @@ public class Question {
     public String getC() {
         return C;
     }
+    public String getD() {
+        return D;
+    }
     public String getAnswer() {
         return answer;
     }
@@ -105,6 +141,7 @@ public class Question {
     public boolean getCorrect() {
         return correct;
     }
+    //TODO: This
     public void setCorrect(boolean correct) {
         this.correct = correct;
     }

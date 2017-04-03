@@ -45,5 +45,77 @@ public class InteractivePianoActivity extends AppCompatActivity {
                 mpdsharp.start();
             }
         });
+        e = (Button)this.findViewById(R.id.e);
+        final MediaPlayer mpe = MediaPlayer.create(this, R.raw.e);
+        e.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v) {
+                mpe.start();
+            }
+        });
+        f = (Button)this.findViewById(R.id.f);
+        final MediaPlayer mpf = MediaPlayer.create(this, R.raw.f);
+        f.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v) {
+                mpf.start();
+            }
+        });
+        fsharp = (Button)this.findViewById(R.id.fsharp);
+        final MediaPlayer mpfsharp = MediaPlayer.create(this, R.raw.fsharp);
+        fsharp.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v) {
+                mpfsharp.start();
+            }
+        });
+        g = (Button)this.findViewById(R.id.g);
+        final MediaPlayer mpg = MediaPlayer.create(this, R.raw.g);
+        g.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v) {
+                mpg.start();
+            }
+        });
+        gsharp = (Button)this.findViewById(R.id.gsharp);
+        final MediaPlayer mpgsharp = MediaPlayer.create(this, R.raw.gsharp);
+        gsharp.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v) {
+                mpgsharp.start();
+            }
+        });
+        a = (Button)this.findViewById(R.id.a);
+        final MediaPlayer mpa = MediaPlayer.create(this, R.raw.a);
+        a.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v) {
+                mpa.start();
+            }
+        });
+        asharp = (Button)this.findViewById(R.id.asharp);
+        final MediaPlayer mpasharp = MediaPlayer.create(this, R.raw.asharp);
+        asharp.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v) {
+                mpasharp.start();
+            }
+        });
+        b = (Button)this.findViewById(R.id.b);
+        final MediaPlayer mpb = MediaPlayer.create(this, R.raw.b);
+        b.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v) {
+                mpb.start();
+            }
+        });
+        c = (Button)this.findViewById(R.id.c);
+        final MediaPlayer mpc = MediaPlayer.create(this, R.raw.c);
+        c.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v) {
+                mpc.start();
+            }
+        });
     }
 }

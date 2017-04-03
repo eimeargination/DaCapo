@@ -11,7 +11,6 @@
     tools:context="com.example.dacapo.InteractivePianoActivity">
 
     <Button
-        android:text="Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/middlec"
@@ -20,7 +19,6 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/f"
@@ -29,7 +27,6 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/g"
@@ -38,7 +35,6 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/a"
@@ -47,43 +43,12 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/b"
         android:layout_below="@+id/a"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/c"
-        android:layout_below="@+id/b"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fsharp"
-        android:layout_marginBottom="20dp"
-        android:background="@android:color/black"
-        android:layout_above="@+id/a"
-        android:layout_alignLeft="@+id/dsharp"
-        android:layout_alignStart="@+id/dsharp" />
-
-    <Button
-        android:text="Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/gsharp"
-        android:background="@android:color/black"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/fsharp"
-        android:layout_alignStart="@+id/fsharp" />
 
     <Button
         android:text="Button"
@@ -96,7 +61,6 @@
         android:layout_alignStart="@+id/gsharp" />
 
     <Button
-        android:text="Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/d"
@@ -118,7 +82,6 @@
         android:layout_marginStart="108dp" />
 
     <Button
-        android:text="Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/e"
@@ -135,4 +98,32 @@
         android:layout_below="@+id/csharp"
         android:layout_alignLeft="@+id/csharp"
         android:layout_alignStart="@+id/csharp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/c"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/b" />
+
+    <Button
+        android:text="Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/gsharp"
+        android:background="@android:color/black"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/fsharp"
+        android:layout_alignStart="@+id/fsharp" />
+
+    <Button
+        android:text="Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fsharp"
+        android:background="@android:color/black"
+        android:layout_above="@+id/gsharp"
+        android:layout_alignLeft="@+id/dsharp"
+        android:layout_alignStart="@+id/dsharp" />
 </RelativeLayout>
